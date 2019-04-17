@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <style>
+    .box{
+      margin: 0 auto;
+      width: 400px;
+    }
+  </style>
+</head>
+<body>
+<div id="test" style="height: 1000px;text-align: center">test</div>                                        <!-- div高度设置高于当前浏览器窗口高度 -->
+<div class="box">
+  <ol id="txt"></ol>
+</div>                                                                                     <!-- 自动加载数据存放于该div中 -->
+<img id="loading" style="display: none;" src="loading.gif" />             <!-- 正在加载的动画图 -->
+<script>
+    var a = 0;
+    $(window).scroll(function() {
+        //$(document).scrollTop()    滚动条位置距页面顶部的距离；
+        //$(document).height()         整个页面的总高度；
+        //$(window).height()             当前窗口的高度；
+      if ($(document).scrollTop() >= $(document).height()*0.9 - $(window).height()) {   //判断是否已经滚动到页面底部；
+            $("#loading").css("display", "block");                                                            //切换正在加载的数据的图片状态为显示；
+          a++;
+        $.ajax({                                                                                                          //加载ajax；
+              url: a +'.json',                                                                                    //请求路径，这里的路径是一个json文件；
+                success: function(data) {                                                                          //当请求成功时执行的回调函数；
+
+                  var str = ""
+                      $.each(data, function(i, item) {                                                            //遍历出来json里边的内容；i，表示当前遍历到第几条内容；item，表示当前遍历的对象；
+                          str +="<li>"+'name:' + item.name + 'number:' + item.number  +"</li>" //+ '  性别：' + item.sex
+                      });
+                       $("#txt").append(str);                                                                          //把遍历到的内容追击到id为txt的div中;
+
+                      $("#loading").css("display", "none");                                                   //切换正在加载数据图片状态为不显示；
+                  }
+            });
+        }
+    });
+</script>
+</body>
+</html>
