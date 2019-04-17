@@ -36,6 +36,12 @@ def getimages(name):
     json_dict = json.load(f)
   return jsonify(json_dict)
 
+@app.route('/api/getthuimages/<name>')
+def getthuimages(name):
+  with open("./api/getthuimages/"+name+".json", 'r', encoding='utf-8') as f:
+    json_dict = json.load(f)
+  return jsonify(json_dict)
+
 @app.route('/api/getcomments/<name>', methods=['GET', 'POST'])
 def get_cmt(name):
   if request.method == 'POST':

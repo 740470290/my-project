@@ -8,6 +8,7 @@ import NewsList from '../components/news/NewsList'
 import NewsInfo from '../components/news/NewsInfo'
 import PhotoList from '../components/photos/PhotoList'
 import PhotoInfo from '../components/photos/PhotoInfo'
+import GoodsList from '../components/goods/GoodsList'
 // 监听路由是前进还是后退
 // Router.prototype.goBack = function () {
 //   this.isBack = true
@@ -52,6 +53,10 @@ export default new Router({
     {
       path: '/home/photolist/:id',
       component: PhotoInfo
+    },
+    {
+      path: '/home/GoodsList',
+      component: GoodsList
     }
   ],
   linkActiveClass: 'mui-active'
