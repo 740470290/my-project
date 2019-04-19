@@ -9,21 +9,21 @@
     <script src="{{ url_for('static', filename = 'echarts.js') }}"></script>
 </head>
 <body>
-<div id="chartmain" style="width:600px; height: 400px;"></div>
+<div id="chartmain" style="width:900px; height: 600px;"></div>
 <div id="chartsub" style="width:600px; height: 400px;"></div>
 <script type="text/javascript">
   //指定图标的配置和数据
-  var msg = eval('{{list|safe}}')
-  var len = msg.length
+  var list = eval('{{list|safe}}')
+  var info = {{info|safe}}
+  var len = list.length
   var data1=[],data2=[];
-  for(i of msg){
-      data1.push(i[1]+' '+i[2])
-      // var a=i[1].concat(i[2].toString())
-      data2.push({value:i[2],name:i[1]+' '+i[2]})
+  for(i=0;i<len;i++){
+      data1.push(info[i]+' '+list[i])
+      data2.push({value:list[i],name:info[i]+' '+list[i]})
   }
   var option = {
     title : {
-        text: '某站点用户访问来源',
+        text: '实时分配情况',
         // subtext: '纯属虚构',
         x:'center'
     },

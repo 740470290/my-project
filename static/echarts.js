@@ -19879,7 +19879,7 @@ var globalDefault = {
     // color: ['#cc5664', '#9bd6ec', '#ea946e', '#8acaaa', '#f1ec64', '#ee8686', '#a48dc1', '#5da6bc', '#b9dcae'],
     // Dark colors:
     color: [
-        '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83',
+        'red', 'green', 'blue', '#d48265', '#91c7ae', '#749f83',
         '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'
     ],
 
@@ -70447,10 +70447,10 @@ var sunburstLayout = function (seriesType, ecModel, api, payload) {
                     ? unitRadian : (value * unitRadian);
                 if (angle < minAngle) {
                     angle = minAngle;
-                    
+
                 }
                 else {
-                    
+
                 }
 
                 endAngle = startAngle + dir * angle;
