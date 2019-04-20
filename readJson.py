@@ -44,7 +44,6 @@ for k in range(12):
   # c=float(i[2])
   # i[2]=c
 print(row)
-print(row[0][0])
 print(str(row[0][0])[0:10])
 print(ls)
 a=list(set(ls))
