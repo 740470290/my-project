@@ -6,15 +6,25 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+  <style>
+    div{
+      margin: 0 auto;
+      background-color: #eee;
+      margin-bottom: 50px;
+    }
+  </style>
     <script src="{{ url_for('static', filename = 'echarts.js') }}"></script>
 </head>
 <body>
+<div id="chartsub" style="width:1350px; height: 900px;"></div>
 <div id="chartmain" style="width:900px; height: 600px;"></div>
-<div id="chartsub" style="width:600px; height: 400px;"></div>
 <script type="text/javascript">
   //指定图标的配置和数据
   var list = eval('{{list|safe}}')
   var info = {{info|safe}}
+  var subdata = {{ls|safe}}
+  var subdata1 = {{ls1|safe}}
+  var subdata2 = {{ls2|safe}}
   var len = list.length
   var data1=[],data2=[];
   for(i=0;i<len;i++){
@@ -69,87 +79,67 @@
     ]
 };
   suboption = {
-    title: {
-        x: 'center',
-        text: 'ECharts例子个数统计',
-        subtext: 'Rainbow bar example',
-        link: 'http://echarts.baidu.com/doc/example.html'
+    title : {
+        text: '近12天库存图',
     },
-    tooltip: {
-        trigger: 'item'
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['入库数量','出库数量']
     },
     toolbox: {
-        show: true,
-        feature: {
-            dataView: {show: true, readOnly: false},
-            restore: {show: true},
-            saveAsImage: {show: true}
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
         }
     },
-    calculable: true,
-    grid: {
-        borderWidth: 0,
-        y: 80,
-        y2: 60
-    },
-    xAxis: [
+    calculable : true,
+    xAxis : [
         {
-            type: 'category',
-            show: false,
-            data: ['Line', 'Bar', 'Scatter', 'K', 'Pie', 'Radar', 'Chord', 'Force', 'Map', 'Gauge', 'Funnel']
+            type : 'category',
+            data : subdata
         }
     ],
-    yAxis: [
+    yAxis : [
         {
-            type: 'value',
-            show: false
+            type : 'value'
         }
     ],
-    series: [
+    series : [
         {
-            name: 'ECharts例子个数统计',
-            type: 'bar',
-            itemStyle: {
-                normal: {
-                    color: function(params) {
-                        // build a color map as your need.
-                        var colorList = [
-                          '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
-                           '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
-                           '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
-                        ];
-                        return colorList[params.dataIndex]
-                    },
-                    label: {
-                        show: true,
-                        position: 'top',
-                        formatter: '{b}\n{c}'
-                    }
-                }
+            name:'入库数量',
+            type:'bar',
+            data:subdata1,
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
             },
-            data: [12,21,10,4,12,5,6,5,25,23,7],
-            markPoint: {
-                tooltip: {
-                    trigger: 'item',
-                    backgroundColor: 'rgba(0,0,0,0)',
-                    formatter: function(params){
-                        return '<img src="'
-                                + params.data.symbol.replace('image://', '')
-                                + '"/>';
-                    }
-                },
-                data: [
-                    {xAxis:0, y: 350, name:'Line', symbolSize:20, symbol: 'image://../asset/ico/折线图.png'},
-                    {xAxis:1, y: 350, name:'Bar', symbolSize:20, symbol: 'image://../asset/ico/柱状图.png'},
-                    {xAxis:2, y: 350, name:'Scatter', symbolSize:20, symbol: 'image://../asset/ico/散点图.png'},
-                    {xAxis:3, y: 350, name:'K', symbolSize:20, symbol: 'image://../asset/ico/K线图.png'},
-                    {xAxis:4, y: 350, name:'Pie', symbolSize:20, symbol: 'image://../asset/ico/饼状图.png'},
-                    {xAxis:5, y: 350, name:'Radar', symbolSize:20, symbol: 'image://../asset/ico/雷达图.png'},
-                    {xAxis:6, y: 350, name:'Chord', symbolSize:20, symbol: 'image://../asset/ico/和弦图.png'},
-                    {xAxis:7, y: 350, name:'Force', symbolSize:20, symbol: 'image://../asset/ico/力导向图.png'},
-                    {xAxis:8, y: 350, name:'Map', symbolSize:20, symbol: 'image://../asset/ico/地图.png'},
-                    {xAxis:9, y: 350, name:'Gauge', symbolSize:20, symbol: 'image://../asset/ico/仪表盘.png'},
-                    {xAxis:10, y: 350, name:'Funnel', symbolSize:20, symbol: 'image://../asset/ico/漏斗图.png'},
+            markLine : {
+                data : [
+                    {type : 'average', name: '平均值'}
+                ]
+            }
+        },
+        {
+            name:'出库数量',
+            type:'bar',
+            data:subdata2,
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                data : [
+                    {type : 'average', name : '平均值'}
                 ]
             }
         }
@@ -157,13 +147,14 @@
 };
 
 
+
   //初始化echarts实例
   var myChart = echarts.init(document.getElementById('chartmain'))
-  // var mySubChart = echarts.init(chartsub)
+  var mySubChart = echarts.init(chartsub)
 
   //使用制定的配置项和数据显示图表
   myChart.setOption(option)
-  // mySubChart.setOption(suboption)
+  mySubChart.setOption(suboption)
 </script>
 </body>
 </html>

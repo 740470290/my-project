@@ -19879,7 +19879,7 @@ var globalDefault = {
     // color: ['#cc5664', '#9bd6ec', '#ea946e', '#8acaaa', '#f1ec64', '#ee8686', '#a48dc1', '#5da6bc', '#b9dcae'],
     // Dark colors:
     color: [
-        'red', 'green', 'blue', '#d48265', '#91c7ae', '#749f83',
+        '#6495ed','#32cd32','#ff7f50', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83',
         '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'
     ],
 
