@@ -33,6 +33,9 @@ def home():
   ls = sorted(set(ls), reverse=True)
   ls1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ls2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  if len(ls)<12:
+    for m in range(12-len(ls)):
+      ls.append('-')
   for k in range(12):
     for j in range(length):
       if row2[j][0] == '1' and str(row2[j][1])[0:10] == ls[k]:
@@ -40,7 +43,6 @@ def home():
       elif row2[j][0] == '2' and str(row2[j][1])[0:10] == ls[k]:
         ls2[k] = ls2[k] + 1
   ls=ls[:12][::-1]
-  print(ls)
   ls1=ls1[::-1]
   ls2=ls2[::-1]
   cursor2.close()

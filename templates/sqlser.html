@@ -5,12 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>库存实时统计</title>
   <style>
     div{
-      margin: 0 auto;
+      margin: 25px auto;
       background-color: #eee;
-      margin-bottom: 50px;
     }
   </style>
     <script src="{{ url_for('static', filename = 'echarts.js') }}"></script>
@@ -80,7 +79,7 @@
 };
   suboption = {
     title : {
-        text: '近12天库存图',
+        text: '近12天库存信息',
     },
     tooltip : {
         trigger: 'axis'
