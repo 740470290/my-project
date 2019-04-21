@@ -6,14 +6,16 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import App from './App'
+import Vuex from 'vuex'
 import router from './router'
-import './lib/mui/css/mui.css'
+import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
 import VueResource from 'vue-resource'
 import moment from 'moment'
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
 Vue.use(MintUI)
+Vue.use(Vuex)
 Vue.use(VueResource)
 Vue.http.options.emulateJSON = true
 Vue.filter('dataFormat', function (dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
@@ -30,7 +32,18 @@ window.onload = function () {
   new Vue({
     el: '#app',
     router,
+    store,
     components: { App },
     template: '<App/>'
   })
 }
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  }
+})

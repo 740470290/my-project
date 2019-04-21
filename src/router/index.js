@@ -10,6 +10,8 @@ import PhotoList from '../components/photos/PhotoList'
 import PhotoInfo from '../components/photos/PhotoInfo'
 import GoodsList from '../components/goods/GoodsList'
 import GoodsInfo from '../components/goods/GoodsInfo'
+import GoodsDesc from '../components/goods/GoodsDesc'
+import GoodsComment from '../components/goods/GoodsComment'
 // 监听路由是前进还是后退
 // Router.prototype.goBack = function () {
 //   this.isBack = true
@@ -62,6 +64,16 @@ export default new Router({
     {
       path: '/home/GoodsList/:id',
       component: GoodsInfo
+    },
+    {
+      name: 'goodsdesc',
+      path: '/home/goodslist/GoodsDesc/:id',
+      component: GoodsDesc
+    },
+    {
+      name: 'goodscomment',
+      path: '/home/goodslist/GoodsComment/:id',
+      component: GoodsComment
     }
   ],
   linkActiveClass: 'mui-active'
