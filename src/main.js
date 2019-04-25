@@ -37,13 +37,40 @@ window.onload = function () {
     template: '<App/>'
   })
 }
+var car = JSON.parse(localStorage.getItem('car') || '[]')
 const store = new Vuex.Store({
   state: {
-    count: 0
+    car: car
   },
   mutations: {
-    increment (state) {
-      state.count++
+    addToCar (state, goodsinfo) {
+      var flag = false
+      state.car.some(item => {
+        if (item.id === goodsinfo.id) {
+          item.count += parseInt(goodsinfo.count)
+          return true
+        }
+      })
+      if (!flag) {
+        state.car.push(goodsinfo)
+      }
+      localStorage.setItem('car', JSON.stringify(state.car))
+    }
+  },
+  getters: {
+    getAllCount (state) {
+      var c = 0
+      state.car.forEach(item => {
+        c += item.count
+      })
+      return c
+    },
+    getGoodsCount (state) {
+      var o = {}
+      state.car.forEach(item => {
+        o[item.id] = item.count
+      })
+      return o
     }
   }
 })

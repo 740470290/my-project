@@ -11,25 +11,29 @@ import config
 # with open("./t.json", 'w', encoding='utf-8') as w:
 #     json.dump(json_dict, w,ensure_ascii = False)
 #     print(json_dict)
-conn = pymssql.connect(config.server, config.user, config.pwd, config.database2)
+conn = pymssql.connect(config.server, config.user, config.pwd, config.database1)
+conn1 = conn
 cursor = conn.cursor()
-cursor.execute('SELECT TRK_TP,CREATE_DATE FROM dbo.HIS_WCS_TRK')
+cursor1 = conn1.cursor()
+cursor.execute('SELECT locate_st FROM dbo.VIEW_IWMS_LOCATE')
+cursor1.execute('SELECT * FROM dbo.VIEW_SKU_SUM_CLASS')
+row1 = cursor1.fetchall()
 row = cursor.fetchall()
-ls=[]
-length=len(row)
-for i in range(length):
-  ls.append(str(row[i][1])[0:10])
-print('..........',sorted(set(ls), reverse=True))
-ls=sorted(list(set(ls)),reverse=True)
-
-ls1=[0,0,0,0,0,0,0,0,0,0,0,0]
-ls2=[0,0,0,0,0,0,0,0,0,0,0,0]
-for k in range(12):
-  for j in range(length):
-    if row[j][0]=='1' and str(row[j][1])[0:10]==ls[k]:
-      ls1[k] = ls1[k]+1
-    elif row[j][0]=='2' and str(row[j][1])[0:10]==ls[k]:
-      ls2[k] = ls2[k]+1
+# ls=[]
+# length=len(row)
+# for i in range(length):
+#   ls.append(str(row[i][1])[0:10])
+# print('..........',sorted(set(ls), reverse=True))
+# ls=sorted(list(set(ls)),reverse=True)
+#
+# ls1=[0,0,0,0,0,0,0,0,0,0,0,0]
+# ls2=[0,0,0,0,0,0,0,0,0,0,0,0]
+# for k in range(12):
+#   for j in range(length):
+#     if row[j][0]=='1' and str(row[j][1])[0:10]==ls[k]:
+#       ls1[k] = ls1[k]+1
+#     elif row[j][0]=='2' and str(row[j][1])[0:10]==ls[k]:
+#       ls2[k] = ls2[k]+1
 #   if row[i][0]=='0':
 #     ls[0]=ls[0]+1
 #   elif row[i][0]=='1':
@@ -43,14 +47,14 @@ for k in range(12):
 #   i=i[0]
   # c=float(i[2])
   # i[2]=c
-print(row)
-print(str(row[0][0])[0:10])
-print(ls)
-a=list(set(ls))
-print(sorted(a,reverse=True))
-print(ls)
-print(ls1)
-print(ls2)
+# print(row)
+# print(str(row[0][0])[0:10])
+# print(ls)
+# a=list(set(ls))
+# print(sorted(a,reverse=True))
+# print(ls)
+# print(ls1)
+# print(ls2)
 # print(ls)
 # print(json.dumps(ls))
 # print(list)

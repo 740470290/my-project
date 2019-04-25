@@ -27,7 +27,7 @@
               <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
             </div>
           </div>
-          <p>
+          <p style="margin-top: 10px">
             <mt-button type="primary" size="small">立即购买</mt-button>
             <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
           </p>
@@ -53,7 +53,6 @@
 
 <script>
 import mui from '../../lib/mui/js/mui.min.js'
-
 export default {
   name: 'GoodsInfo',
   mounted () {
@@ -92,6 +91,13 @@ export default {
     },
     addToShopCar () {
       this.ballFlag = !this.ballFlag
+      var goodsinfo = {
+        id: this.id,
+        count: this.selectedCount,
+        price: this.goodsinfo.sell_price,
+        selected: true
+      }
+      this.$store.commit('addToCar', goodsinfo)
     },
     beforeEnter (el) {
       el.style.transform = 'translate(0px,0px)'
