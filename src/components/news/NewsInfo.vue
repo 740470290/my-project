@@ -29,8 +29,6 @@ export default {
     getNewsInfo () {
       this.$http.get('api/getnew/' + this.id).then(res => {
         this.newsinfo = res.body.message[0]
-      }, res => {
-        alert('获取新闻列表失败')
       })
     }
   },

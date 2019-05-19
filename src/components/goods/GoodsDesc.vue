@@ -26,10 +26,10 @@ export default {
   text-align: center;
   margin: 15px 0;
 }
-  .goodsdesc-container img{
-    width: 100%;
-  }
-  .goodsdesc-container{
-    padding: 4px;
-  }
+.goodsdesc-container img{
+  width: 100%;
+}
+.goodsdesc-container{
+  padding: 4px;
+}
 </style>

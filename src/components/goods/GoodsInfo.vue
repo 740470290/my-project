@@ -103,7 +103,7 @@ export default {
       el.style.transform = 'translate(0px,0px)'
     },
     enter (el, done) {
-      el.offsetWidth
+      // el.offsetWidth
       const ballPosition = this.$refs.ball.getBoundingClientRect()
       const badgePosition = document.getElementById('badge').getBoundingClientRect()
       const xDist = badgePosition.left - ballPosition.left
@@ -125,25 +125,19 @@ export default {
 <style scoped>
   .goodsinfo-container {
     background-color: #eee;
-    /*overflow: hidden;*/
   }
-
   .lun {
     height: 400px;
   }
-
   .mint-swipe-item {
     text-align: center;
   }
-
   .now_price {
     color: red;
   }
-
   .mui-card-footer {
     display: block;
   }
-
   .mui-card-footer button {
     margin: 15px 0;
   }
@@ -158,3 +152,4 @@ export default {
     left: 143px;
   }
 </style>
+{parser: "babylon" }
