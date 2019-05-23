@@ -20,6 +20,7 @@ import GoodsComment from '../components/goods/GoodsComment'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -67,12 +68,12 @@ export default new Router({
     },
     {
       name: 'goodsdesc',
-      path: '/home/goodslist/GoodsDesc/:id',
+      path: '/home/goodslist/:id/GoodsDesc',
       component: GoodsDesc
     },
     {
       name: 'goodscomment',
-      path: '/home/goodslist/GoodsComment/:id',
+      path: '/home/goodslist/:id/GoodsComment',
       component: GoodsComment
     }
   ],

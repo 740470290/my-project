@@ -8,7 +8,8 @@
     <hr>
     <div class="content" v-html="newsinfo.content">
     </div>
-    <comment :id="this.id"></comment>
+    <!--<comment :id="this.id"></comment>-->
+    <comment :id=1></comment>
   </div>
 </template>
 

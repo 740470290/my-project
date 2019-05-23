@@ -83,5 +83,5 @@ def home():
 
 # 启动运行
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0',port=80)   # 这样子会直接运行在本地服务器，也即是 localhost:5000
+    app.run(debug=True,host='0.0.0.0',port=5000)   # 这样子会直接运行在本地服务器，也即是 localhost:5000
    # app.run(host='your_ip_address') # 这里可通过 host 指定在公网IP上运行

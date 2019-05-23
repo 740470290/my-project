@@ -1,6 +1,7 @@
 <template>
     <div>
-      <comment :id="$route.params.id"></comment>
+      <!--<comment :id="$route.params.id"></comment>-->
+      <comment :id=1></comment>123
     </div>
 </template>
 
